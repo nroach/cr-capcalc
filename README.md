@@ -1,0 +1,4 @@
+cr-capcalc
+==========
+
+CapitalReady CapCalc
