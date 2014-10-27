@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html ng-app="myApp">
+
+<head>
+  <script src="http://code.angularjs.org/1.1.5/angular.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui/0.4.0/angular-ui.min.js"></script>
+  <script src="script.js"></script>
+</head>
+
+<body ng-controller="mainController" ng-init="init()">
+
+  <input type="text" ng-model="query" placeholder="Search by title">
+  <select ng-model="discountFilter" ng-options="dsc for dsc in availableDiscounts">
+    <option value="">Search by discount</option>
+  </select>
+
+  <ul>
+    <li ng-repeat="classes in results | filter:{gsx$titre.$t: query} | filter:{gsx$discount.$t: discountFilter} | orderBy:orderProp" class="{{classes.gsx$vu.$t}}">
+      <strong>{{classes.gsx$titre.$t}}</strong>
+      | Discount : {{ classes.gsx$discount.$t || 'N/A' }}
+    </li>
+  </ul>
+
+</body>
+
+</html>
