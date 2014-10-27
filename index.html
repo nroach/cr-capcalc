@@ -10,14 +10,27 @@
 
 <body ng-controller="mainController" ng-init="init()">
 
-  <input type="text" ng-model="query" placeholder="Search by title">
+<style>
+  .outputField {
+    display: inline-block;
+    border: 1px solid #EEE;
+    padding: 2.3pt;
+  }
+</style>
+
+<div>
+  API key <input ng-model="apiKey"></input>=<div ng-bind="apiKey" class="outputField"></div>
+</div>
+
+  <input type="text" ng-model="query" placeholder="Search by name">
   <select ng-model="discountFilter" ng-options="dsc for dsc in availableDiscounts">
     <option value="">Search by discount</option>
   </select>
 
   <ul>
-    <li ng-repeat="classes in results | filter:{gsx$titre.$t: query} | filter:{gsx$discount.$t: discountFilter} | orderBy:orderProp" class="{{classes.gsx$vu.$t}}">
-      <strong>{{classes.gsx$titre.$t}}</strong>
+    <li ng-repeat="classes in results | filter:{gsx$name.$t: query} | filter:{gsx$discount.$t: discountFilter} | orderBy:orderProp" class="{{classes.gsx$vu.$t}}">
+      <strong>{{classes.gsx$name.$t}}</strong>
+      | Category : {{ classes.gsx$category.$t || 'N/A' }}
       | Discount : {{ classes.gsx$discount.$t || 'N/A' }}
     </li>
   </ul>
